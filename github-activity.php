@@ -22,4 +22,19 @@ $username = $argv[1];
 $url = "https://api.github.com/users/{$username}/events";
 
 // Open the file using HTTP headers above
-$jsonData = file_get_contents($url, false, $context);
+// Use @ to suppress the default PHP warning
+$jsonData = @file_get_contents($url, false, $context);
+
+if(!$jsonData) {
+    echo "Error. This user doesn't exist" . PHP_EOL;
+    exit(1);
+}
+
+$events = json_decode($jsonData, true, 4);
+
+if(empty($events)) {
+    echo "No recent activity found for this user." . PHP_EOL;
+    exit;
+}
+
+
