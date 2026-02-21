@@ -26,7 +26,27 @@ $url = "https://api.github.com/users/{$username}/events";
 $jsonData = @file_get_contents($url, false, $context);
 
 if(!$jsonData) {
-    echo "Error. This user doesn't exist" . PHP_EOL;
+    $statusLine = $http_response_header[0] ?? '';
+    
+    preg_match('{HTTP\/\d\.\d\s+(\d{3})}', $statusLine, $matches);
+    $statusCode = $matches[1] ?? 'Unknown';
+
+    switch ($statusCode) {
+        case '404':
+            echo "Error: User '$username' not found on GitHub." . PHP_EOL;
+            break;
+        case '403':
+            echo "Error: API Rate limit exceeded. Try again later or use a token." . PHP_EOL;
+            break;
+        case '500':
+        case '502':
+        case '503':
+            echo "Error: GitHub servers are currently having trouble. Try again soon." . PHP_EOL;
+            break;
+        default:
+            echo "Error: Failed to fetch data. (HTTP Status: $statusCode)" . PHP_EOL;
+            break;
+    }
     exit(1);
 }
 
