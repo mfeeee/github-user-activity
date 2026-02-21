@@ -89,3 +89,13 @@ function handleIssueCommentEvent(array $event) {
     echo "- Created a comment of an issue in $repoName" . PHP_EOL;
 }
 
+function handleIssueEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    if ($action == "Opened") {
+        echo "- $action a new issue in $repoName" . PHP_EOL;
+    } else {
+        echo "- $action an issue in $repoName" . PHP_EOL;
+    }
+}
+
