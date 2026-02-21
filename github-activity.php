@@ -144,3 +144,8 @@ function handleReleaseEvent(array $event, array $payload) {
     $action = ucfirst($payload['action']);
     echo "- $action $repoName" . PHP_EOL;
 }
+
+function handleWatchEvent(array $event) {
+    $repoName = $event['repo']['name'];
+    echo "- Starred $repoName" . PHP_EOL;
+}
