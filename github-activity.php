@@ -153,7 +153,7 @@ function handleCreateDeleteEvent(array $event, array $payload) {
         $start = "Deleted a";
     }
 
-    echo "- $start $ref_type named $full_ref  in $repoName" . PHP_EOL;
+    echo "- $start $ref_type named $full_ref in $repoName" . PHP_EOL;
 }
 
 function handleDiscussionEvent(array $event, array $payload) {
@@ -214,7 +214,7 @@ function handlePullRequestReviewEvent(array $event, array $payload) {
 function handlePullRequestReviewCommentEvent(array $event, array $payload) {
     $repoName = $event['repo']['name'];
     $action = ucfirst($payload['action']);
-    echo "-  $action a pull request review comment in $repoName" . PHP_EOL;
+    echo "- $action a pull request review comment in $repoName" . PHP_EOL;
 }
 
 function handlePushEvent(array $event, array $payload) {
