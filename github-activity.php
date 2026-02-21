@@ -99,3 +99,9 @@ function handleIssueEvent(array $event, array $payload) {
     }
 }
 
+function handleMemberEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action a new member in $repoName" . PHP_EOL;
+}
+
