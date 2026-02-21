@@ -68,6 +68,7 @@ if(empty($events)) {
 }
 
 foreach ($events as $event) {
+    $repoName = $event['repo']['name'];
     $type = $event['type'];
     $payload = $event['payload'];
 
