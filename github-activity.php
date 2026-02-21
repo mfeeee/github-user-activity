@@ -37,4 +37,9 @@ if(empty($events)) {
     exit;
 }
 
+function handleCommitCommentEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action commit comment in $repoName" . PHP_EOL;
+}
 
