@@ -143,8 +143,6 @@ function handleCreateDeleteEvent(array $event, array $payload) {
 
     if (is_null($ref_type)) {
         $ref_type = "";
-    } else {
-        $ref_type = " " . $ref_type . " ";
     }
     
     if ($type == 'Created') {
