@@ -72,3 +72,9 @@ function handleDiscussionEvent(array $event, array $payload) {
     $action = ucfirst($payload['action']);
     echo "- $action a discussion in $repoName" . PHP_EOL;
 }
+
+function handleForkEvent(array $payload) {
+    $forkedRepo = $payload['forkee']['full_name'] ?? $payload['forkee']['name'] ?? "a repository";
+    echo "- Forked $forkedRepo" .  PHP_EOL;
+}
+
