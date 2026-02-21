@@ -67,3 +67,8 @@ function handleCreateDeleteEvent(array $event, array $payload) {
     echo "- $start $ref_type named $full_ref  in $repoName" . PHP_EOL;
 }
 
+function handleDiscussionEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action a discussion in $repoName" . PHP_EOL;
+}
