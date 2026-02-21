@@ -14,7 +14,7 @@ $context = stream_context_create($opts);
 
 if ($argc < 2) {
     echo "GitHub User Activity Guide\n" . PHP_EOL;
-    echo "Usage: php github-activity.php <username>" . PHP_EOL;
+    echo "Usage: php github-activity.php <username>\n" . PHP_EOL;
     exit(1);
 }
 
