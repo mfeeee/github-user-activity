@@ -32,6 +32,11 @@ if(!$jsonData) {
 
 $events = json_decode($jsonData, true);
 
+if (json_last_error() !== JSON_ERROR_NONE) {
+    echo "Error: Failed to parse GitHub response." . PHP_EOL;
+    exit(1);
+}
+
 if(empty($events)) {
     echo "No recent activity found for this user." . PHP_EOL;
     exit;
