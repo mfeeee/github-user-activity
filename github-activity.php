@@ -78,3 +78,9 @@ function handleForkEvent(array $payload) {
     echo "- Forked $forkedRepo" .  PHP_EOL;
 }
 
+function handleGollumEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $gollumCount = count($payload['pages']);
+    echo "- Updated $gollumCount pages in $repoName" . PHP_EOL;
+}
+
