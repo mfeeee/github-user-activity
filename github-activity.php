@@ -26,6 +26,11 @@ $url = "https://api.github.com/users/{$username}/events";
 $jsonData = @file_get_contents($url, false, $context);
 
 if(!$jsonData) {
+    if (!isset($http_response_header)) {
+        echo "Error: Network connection failure. Please check your internet connection." . PHP_EOL;
+        exit(1);
+    }
+    
     $statusLine = $http_response_header[0] ?? '';
     
     preg_match('{HTTP\/\d\.\d\s+(\d{3})}', $statusLine, $matches);
