@@ -110,3 +110,9 @@ function handlePublicEvent(array $event) {
     echo "- Made $repoName public" . PHP_EOL;
 }
 
+function handlePullRequestEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action a pull request in $repoName" . PHP_EOL;
+}
+
