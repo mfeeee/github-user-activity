@@ -43,3 +43,27 @@ function handleCommitCommentEvent(array $event, array $payload) {
     echo "- $action commit comment in $repoName" . PHP_EOL;
 }
 
+function handleCreateDeleteEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $type = ($event['type'] === 'CreateEvent') ? 'Created' : 'Deleted';
+    $ref_type = $payload['ref_type'];
+    $full_ref = $payload['full_ref'];
+
+    $refs = "refs/heads/";
+    $full_ref = str_replace($refs, "", $full_ref);
+
+    if (is_null($ref_type)) {
+        $ref_type = "";
+    } else {
+        $ref_type = " " . $ref_type . " ";
+    }
+    
+    if ($type == 'Created') {
+        $start = "Created a new";
+    } else {
+        $start = "Deleted a";
+    }
+
+    echo "- $start $ref_type named $full_ref  in $repoName" . PHP_EOL;
+}
+
