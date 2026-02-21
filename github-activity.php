@@ -128,3 +128,14 @@ function handlePullRequestReviewCommentEvent(array $event, array $payload) {
     echo "-  $action a pull request review comment in $repoName" . PHP_EOL;
 }
 
+function handlePushEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $commits = $payload['commits'] ?? [];
+    $pullCount = count($commits);
+
+    if ($pullCount > 0) {
+        $word = ($pullCount === 1) ? "commit" : "commits";
+        echo "- Pushed $pullCount $word to $repoName" . PHP_EOL;
+    }
+}
+
