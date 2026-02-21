@@ -139,3 +139,8 @@ function handlePushEvent(array $event, array $payload) {
     }
 }
 
+function handleReleaseEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action $repoName" . PHP_EOL;
+}
