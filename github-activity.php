@@ -116,3 +116,9 @@ function handlePullRequestEvent(array $event, array $payload) {
     echo "- $action a pull request in $repoName" . PHP_EOL;
 }
 
+function handlePullRequestReviewEvent(array $event, array $payload) {
+    $repoName = $event['repo']['name'];
+    $action = ucfirst($payload['action']);
+    echo "- $action a pull request review in $repoName" . PHP_EOL;
+}
+
