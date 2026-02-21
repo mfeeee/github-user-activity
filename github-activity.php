@@ -105,3 +105,8 @@ function handleMemberEvent(array $event, array $payload) {
     echo "- $action a new member in $repoName" . PHP_EOL;
 }
 
+function handlePublicEvent(array $event) {
+    $repoName = $event['repo']['name'];
+    echo "- Made $repoName public" . PHP_EOL;
+}
+
