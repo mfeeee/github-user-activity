@@ -30,7 +30,7 @@ if(!$jsonData) {
     exit(1);
 }
 
-$events = json_decode($jsonData, true, 4);
+$events = json_decode($jsonData, true);
 
 if(empty($events)) {
     echo "No recent activity found for this user." . PHP_EOL;
