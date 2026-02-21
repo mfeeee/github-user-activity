@@ -37,6 +37,64 @@ if(empty($events)) {
     exit;
 }
 
+foreach ($events as $event) {
+    $type = $event['type'];
+    $payload = $event['payload'];
+
+    switch ($type) {
+        case 'CommitCommentEvent':
+            handleCommitCommentEvent($event, $payload);
+            break;
+        case 'CreateEvent':
+        case 'DeleteEvent':
+            handleCreateDeleteEvent($event, $payload);
+            break;
+        case 'DiscussionEvent':
+            handleDiscussionEvent($event, $payload);
+            break;
+        case 'ForkEvent':
+            handleForkEvent($payload);
+            break;
+        case 'GollumEvent':
+            handleGollumEvent($event, $payload);
+            break;
+        case 'IssueCommentEvent':
+            handleIssueCommentEvent($event);
+            break;
+        case 'IssuesEvent':
+            handleIssueEvent($event, $payload);
+            break;
+        case 'MemberEvent':
+            handleMemberEvent($event, $payload);
+            break;
+        case 'PublicEvent':
+            handlePublicEvent($event);
+            break;
+        case 'PullRequestEvent':
+            handlePullRequestEvent($event, $payload);
+            break;
+        case 'PullRequestReviewEvent':
+            handlePullRequestReviewEvent($event, $payload);
+            break;
+        case 'PullRequestReviewCommentEvent':
+            handlePullRequestReviewCommentEvent($event, $payload);
+            break;
+        case 'PushEvent':
+            handlePushEvent($event, $payload);
+            break;
+        case 'ReleaseEvent':
+            handleReleaseEvent($event, $payload);
+            break;
+        case 'WatchEvent':
+            handleWatchEvent($event);
+            break;
+        default:
+            $cleanType = str_replace("Event", "", $type);
+            echo "- $cleanType activity in $repoName" . PHP_EOL;
+            break;
+        }
+}
+
 function handleCommitCommentEvent(array $event, array $payload) {
     $repoName = $event['repo']['name'];
     $action = ucfirst($payload['action']);
