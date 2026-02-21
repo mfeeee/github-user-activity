@@ -84,3 +84,8 @@ function handleGollumEvent(array $event, array $payload) {
     echo "- Updated $gollumCount pages in $repoName" . PHP_EOL;
 }
 
+function handleIssueCommentEvent(array $event) {
+    $repoName = $event['repo']['name'];
+    echo "- Created a comment of an issue in $repoName" . PHP_EOL;
+}
+
